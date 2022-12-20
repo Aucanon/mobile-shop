@@ -31,7 +31,7 @@ const routes = [
     meta: { requireAuth: true }
   },
   {
-    path: '/order-confirm',
+    path: '/order-confirm/:cartId',
     name: 'order-confirm',
     component: () => import('@/views/OrderConfirm/index.vue'),
     props: true,
@@ -107,7 +107,7 @@ router.beforeEach((to) => {
   if (!to.meta.requireAuth) {
     return true
   }
-  if (!store.state.user || !window.localStorage.getItem('USER_TOKEN')) {
+  if (!store.state.user.token || !window.localStorage.getItem('USER_TOKEN')) {
     return {
       name: 'login',
       query: {
@@ -115,7 +115,6 @@ router.beforeEach((to) => {
       }
     }
   }
-  
 })
 
 export default router

@@ -42,7 +42,7 @@
           v-for="(item, index) in newsData"
           :key="index"
         >
-        {{ item.chiild[0].val }}
+          {{ item.chiild[0].val }}
         </van-swipe-item>
       </van-swipe>
     </van-notice-bar>
@@ -59,6 +59,15 @@
 </template>
 
 <script setup>
+import {
+  PullRefresh as VanPullRefresh,
+  Swipe as VanSwipe,
+  SwipeItem as VanSwipeItem,
+  Grid as VanGrid,
+  GridItem as VanGridItem,
+  NoticeBar as VanNoticeBar,
+  List as VanList
+} from 'vant'
 import ProductList from '@/components/ProductList.vue'
 import { ref, computed } from 'vue'
 import { getDefaultData } from '@/api/index'

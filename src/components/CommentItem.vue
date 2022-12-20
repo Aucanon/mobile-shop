@@ -3,22 +3,39 @@
     <!-- 用户信息 -->
     <div class="user-info">
       <img :src="reply?.avatar">
-      <span class="nickname" v-text="reply.nickname"></span>
-      <van-rate v-model="star" readonly size="12" />
+      <span
+        class="nickname"
+        v-text="reply.nickname"
+      />
+      <van-rate
+        v-model="star"
+        readonly
+        size="12"
+      />
     </div>
     <!-- 商品信息与时间 -->
-    <p class="time">{{ reply?.add_time }} {{ reply?.sku }}</p>
+    <p class="time">
+      {{ reply?.add_time }} {{ reply?.sku }}
+    </p>
     <!-- 评价内容 -->
-    <p class="comment-content" v-text="reply?.comment"></p>
+    <p
+      class="comment-content"
+      v-text="reply?.comment"
+    />
     <!-- 图片列表 -->
     <ul class="pic">
-      <li v-for="(item, index) in pics" :key="index"><img :src="item"></li>
+      <li
+        v-for="(item, index) in pics"
+        :key="index"
+      >
+        <img :src="item">
+      </li>
     </ul>
   </van-cell>
 </template>
 
 <script setup>
-import { computed } from '@vue/reactivity';
+import { computed } from 'vue'
 const { reply } = defineProps({
   reply: {
     type: Object,

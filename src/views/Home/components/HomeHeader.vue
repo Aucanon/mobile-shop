@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-
+import { Icon as VanIcon } from 'vant'
 </script>
 
 <style lang="scss" scoped>

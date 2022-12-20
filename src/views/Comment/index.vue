@@ -1,19 +1,65 @@
 <template>
-  <van-nav-bar left-arrow fixed @click-left="router.go(-1)" title="评论"></van-nav-bar>
+  <van-nav-bar
+    left-arrow
+    fixed
+    @click-left="router.go(-1)"
+    title="评论"
+  />
   <van-cell-group class="comment">
-    <van-cell title="商品评价" :value="`好评率：${ replyChance }%`"></van-cell>
+    <van-cell
+      title="商品评价"
+      :value="`好评率：${ replyChance }%`"
+    />
     <van-cell class="tags">
-      <van-button @click="tagHandle('0')" :class="{ active: state.isSum }"  size="small">全部({{ sumCount }})</van-button>
-      <van-button @click="tagHandle('1')" :class="{ active: state.isGood }" size="small">好评({{ goodCount }})</van-button>
-      <van-button @click="tagHandle('2')" :class="{ active: state.isIn }" size="small">中评({{ inCount }})</van-button>
-      <van-button @click="tagHandle('3')" :class="{ active: state.isPoor }" size="small">差评({{ poorCount }})</van-button>
+      <van-button
+        @click="tagHandle('0')"
+        :class="{ active: state.isSum }"
+        size="small"
+      >
+        全部({{ sumCount }})
+      </van-button>
+      <van-button
+        @click="tagHandle('1')"
+        :class="{ active: state.isGood }"
+        size="small"
+      >
+        好评({{ goodCount }})
+      </van-button>
+      <van-button
+        @click="tagHandle('2')"
+        :class="{ active: state.isIn }"
+        size="small"
+      >
+        中评({{ inCount }})
+      </van-button>
+      <van-button
+        @click="tagHandle('3')"
+        :class="{ active: state.isPoor }"
+        size="small"
+      >
+        差评({{ poorCount }})
+      </van-button>
     </van-cell>
-    <comment-item v-for="item in state.commentList" :key="item.id" :reply="item"></comment-item>
-    <van-empty v-if="!hasComment" description="暂时没有评论..." />
+    <comment-item
+      v-for="item in state.commentList"
+      :key="item.id"
+      :reply="item"
+    />
+    <van-empty
+      v-if="!hasComment"
+      description="暂时没有评论..."
+    />
   </van-cell-group>
 </template>
 
 <script setup>
+import {
+  NavBar as VanNavBar,
+  CellGroup as VanCellGroup,
+  Cell as VanCell,
+  Button as VanButton,
+  Empty as VanEmpty
+} from 'vant'
 import { getCommentCount, getCommentByTag } from '@/api/product'
 import { reactive, computed } from 'vue'
 import CommentItem from '@/components/CommentItem.vue'
@@ -38,7 +84,7 @@ const state = reactive({
   isSum: computed(() => state.active === '0'),
   isGood: computed(() => state.active === '1'),
   isIn: computed(() => state.active === '2'),
-  isPoor: computed(() => state.active === '3'),
+  isPoor: computed(() => state.active === '3')
 })
 // 通过计算属性处理不同类别评论个数
 const goodCount = computed(() => state.commentCounts?.good_count || 0)
